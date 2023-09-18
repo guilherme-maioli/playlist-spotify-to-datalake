@@ -1,6 +1,6 @@
 from minio import Minio
 from minio.error import S3Error
-from dotenv import load_dotenv, find_dotenv
+from dotenv import load_dotenv
 import os
 
 load_dotenv()
@@ -13,14 +13,13 @@ def main():
     bucket_name = "bucket2"
     file_name = "file_test.txt"
 
-    # Cria um cliente e acessa o servidor rodando em docker.
+    # Create a cliente and access the server running in docker.
     client = Minio(
         "127.0.0.1:9000",
         access_key=ACCESS_KEY,
         secret_key=SECRET_KEY,
-        secure=False
+        secure=False  #if true we need config SSL.
     )
-
     
     
     # verifica se o bucket existe, se não existe cria
@@ -30,11 +29,9 @@ def main():
     else:
         print(f"Bucket '{bucket_name}' already exists")
 
-    # Upload 'C:\\Users\\Guilherme\\Desktop\\portifolio\\remove_backgroung.png' as object name
-    # 'remove_backgroung.png' to bucket 'bucket1'.
-    client.fput_object(
-        bucket_name, file_name, os.path.join(current_dir, file_name),
-    )
+    # Upload 'current_dir+file_name' as object name
+    # 'file_name' to bucket 'bucket_name'.
+    client.fput_object( bucket_name, file_name, os.path.join(current_dir, file_name))
     print(
         f"'{os.path.join(current_dir, file_name)}' is successfully uploaded as "
         f"object '{file_name}' to bucket '{bucket_name}'."
