@@ -2,20 +2,24 @@ from minio import Minio
 from minio.error import S3Error
 from dotenv import load_dotenv
 import os
+from datetime import datetime
 
 load_dotenv()
+ACCESS_KEY= os.environ["ACCESS_KEY"]
+SECRET_KEY= os.environ["SECRET_KEY"]
+ENDPOINT_SERVER= os.environ["ENDPOINT_SERVER"]
 
 def main():
-    ACCESS_KEY= os.environ["ACCESS_KEY"]
-    SECRET_KEY= os.environ["SECRET_KEY"]
-
+    
+    bucket_name = datetime.today().strftime("%d-%m-%Y")
+    
     current_dir = os.getcwd()
-    bucket_name = "bucket2"
+    current_dir = os.path.join(current_dir, "data")
     file_name = "file_test.txt"
 
     # Create a cliente and access the server running in docker.
     client = Minio(
-        "127.0.0.1:9000",
+        ENDPOINT_SERVER,
         access_key=ACCESS_KEY,
         secret_key=SECRET_KEY,
         secure=False  #if true we need config SSL.
