@@ -1,0 +1,4 @@
+certifi==2023.7.22
+minio==7.1.16
+python-dotenv==1.0.0
+urllib3==2.0.4
