@@ -4,10 +4,24 @@ from dotenv import load_dotenv
 import os
 from datetime import datetime
 
+from spotify import get_musics_playlist
+
 load_dotenv()
+
 ACCESS_KEY= os.environ["ACCESS_KEY"]
 SECRET_KEY= os.environ["SECRET_KEY"]
 ENDPOINT_SERVER= os.environ["ENDPOINT_SERVER"]
+CLIENT_ID_SPOTIFY= os.environ["CLIENT_ID_SPOTIFY"]
+CLIENT_SECRET_SPOTIFY= os.environ["CLIENT_SECRET_SPOTIFY"]
+
+
+def save_file_with_playlist(playlist_name):
+    
+    df = get_musics_playlist(CLIENT_ID_SPOTIFY, CLIENT_SECRET_SPOTIFY, playlist_name)
+    filename = playlist_name.replace(" ", "_") + "_" + datetime.today().strftime("%d-%m-%Y") + ".json"
+    df.to_json(f"./data/{filename}", orient="index")
+
+    return filename
 
 def main():
     
@@ -15,7 +29,8 @@ def main():
     
     current_dir = os.getcwd()
     current_dir = os.path.join(current_dir, "data")
-    file_name = "file_test.txt"
+    
+    file_name = save_file_with_playlist("Radio Birita")
 
     # Create a cliente and access the server running in docker.
     client = Minio(
