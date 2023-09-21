@@ -6,7 +6,7 @@
 </p> 
 
 
-# Working DataLake with MinIO
+# Working with MinIO
 Minio is an object storage server that implements the same public API as Amazon S3. This means that applications that can be configured to talk to Amazon S3 can also be configured to talk to Minio.
 
 ## Putting server online 
@@ -23,9 +23,14 @@ pip install -r requeriments.txt
 
 ## Set .env with your informations
 ```sh
-ACCESS_KEY="your_access_key"
+ACCESS_KEY="access-key-minio"
 
-SECRET_KEY="your_secret_key"
+SECRET_KEY="secret-key-minio"
 
-ENDPOINT_SERVER="your_url"
+ENDPOINT_SERVER="endpoint-runserver-minio"
+
+CLIENT_ID_SPOTIFY = "your-client-id-spotify"
+
+CLIENT_SECRET_SPOTIFY = "your-client-secret-spotify"
+
 ```
