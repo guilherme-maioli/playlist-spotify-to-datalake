@@ -22,15 +22,23 @@ pip install -r requeriments.txt
 ```
 
 ## Set .env with your informations
+ACCESS_KEY, SECRET_KEY and ENDPOINT_SERVER are informations for MinIO. CLIENT_ID_SPOTIFY and CLIENT_SECRET_SPOTIFY are informations for Spotify.
 ```sh
+
 ACCESS_KEY="access-key-minio"
 
 SECRET_KEY="secret-key-minio"
 
 ENDPOINT_SERVER="endpoint-runserver-minio"
 
-CLIENT_ID_SPOTIFY = "your-client-id-spotify"
+CLIENT_ID_SPOTIFY="your-client-id-spotify"
 
-CLIENT_SECRET_SPOTIFY = "your-client-secret-spotify"
+CLIENT_SECRET_SPOTIFY="your-client-secret-spotify"
 
+```
+
+## Running Python
+Next step is to run the Python Script. Type the following command into CMD. In *playlistname* enter the name of the playlist name you want. 
+```sh
+python main.py --playlist playlistname
 ```

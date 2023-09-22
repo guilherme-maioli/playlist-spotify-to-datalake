@@ -3,6 +3,7 @@ from minio.error import S3Error
 from dotenv import load_dotenv
 import os
 from datetime import datetime
+import argparse
 
 from spotify import get_musics_playlist
 
@@ -24,13 +25,22 @@ def save_file_with_playlist(playlist_name):
     return filename
 
 def main():
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--playlistname', dest="playlistname", type=str, help="Add playlistname")
+    args = parser.parse_args()
+    if args.playlistname is None:
+        print("Inform a playlist name with '--playlistname <name>'.")
+        return
     
+    playlist_name = args.playlistname
+
     bucket_name = datetime.today().strftime("%d-%m-%Y")
     
     current_dir = os.getcwd()
     current_dir = os.path.join(current_dir, "data")
     
-    file_name = save_file_with_playlist("Radio Birita")
+    file_name = save_file_with_playlist(playlist_name)
 
     # Create a cliente and access the server running in docker.
     client = Minio(
