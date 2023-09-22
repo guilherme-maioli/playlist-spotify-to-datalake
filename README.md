@@ -40,5 +40,5 @@ CLIENT_SECRET_SPOTIFY="your-client-secret-spotify"
 ## Running Python
 Next step is to run the Python Script. Type the following command into CMD. In *playlistname* enter the name of the playlist name you want. 
 ```sh
-python main.py --playlist playlistname
+python main.py --playlist "Choose a playlist name"
 ```
